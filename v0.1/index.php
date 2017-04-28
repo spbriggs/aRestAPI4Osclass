@@ -7,7 +7,7 @@ require_once '../RestServer.php';
 require_once '../RestDAO.php';
 require_once 'apiServer.php';
 
-$server = new RestServer('debug');
+$server = new Jacwright\RestServer\RestServer('debug');
 
 //$server->refreshCache();
 
