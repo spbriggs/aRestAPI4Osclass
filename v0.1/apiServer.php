@@ -17,7 +17,7 @@ class apiServer {
      * @url GET /locale
      * @url GET /locale/$code
      */
-    public function getLocale($code) {
+    public function getLocale($code=null) {
         if ($code) {
             $result = OSCLocale::newInstance()->findByCode($code);
         } else {
@@ -31,7 +31,7 @@ class apiServer {
      * @url GET /country
      * @url GET /country/$code
      */
-    public function getCountry($code) {
+    public function getCountry($code=null) {
         if ($code) {
             return(CountryStats::newInstance()->findByCountryCode($code));
         }
@@ -44,7 +44,7 @@ class apiServer {
      * 
      * @url GET /country/$code/region
      */
-    public function getRegionbyCountry($code) {
+    public function getRegionbyCountry($code=null) {
         if ($code) {
             return( Region::newInstance()->findByCountry($code));
         }
@@ -58,7 +58,7 @@ class apiServer {
      * 
      * @url GET /region/$regionid/city
      */
-    public function getCityListbyRegion($regionid) {
+    public function getCityListbyRegion($regionid=null) {
         if ($regionid) {
             //GET:return single city and states
             return(CityStats::newInstance()->listCities($regionid, ">=", $order = "city_name ASC"));
@@ -72,7 +72,7 @@ class apiServer {
      *  
      * @url GET /city/$cityid
      */
-    public function getCity($cityid) {
+    public function getCity($cityid=null) {
         if ($cityid) {
             //GET:return single city and states
             return( CityStats::newInstance()->findByCityId($cityid));
@@ -87,7 +87,7 @@ class apiServer {
      * @url GET /category
      * @url GET /category/$id
      */
-    public function getCategory($id) {
+    public function getCategory($id=null) {
         if($id){
            return(RestCategory::newInstance()->findByPrimaryKeyGlobal($id)); 
         }
@@ -100,7 +100,7 @@ class apiServer {
      * 
      * @url GET /categorylang/$lang
      */
-    public function getCategorylang($lang) {
+    public function getCategorylang($lang=null) {
         if ($lang) {
             return(RestCategory::newInstance()->restListEnabled($lang));
         }
@@ -123,7 +123,7 @@ class apiServer {
      *
      * @url GET /item/$id
      */
-    public function getItem($id) {
+    public function getItem($id=null) {
         if ($id) {
             return (Item::newInstance()->findByPrimaryKey($id));
         }
@@ -136,7 +136,7 @@ class apiServer {
      *
      * @url GET /item/$itemId/images
      */
-    public function getItemImagesId($itemId) {
+    public function getItemImagesId($itemId=null) {
   
         if ($itemId) {
             return (RestItem::newInstance()->findItemByPrimaryKey($itemId));
@@ -158,7 +158,7 @@ class apiServer {
      * @url GET /users
      * @url GET /users/$userId;
      */
-    public function getUser($userId) {
+    public function getUser($userId=null) {
 
         if ($userId) {
             // not working so far...
@@ -212,7 +212,7 @@ class apiServer {
      *
      * @url DELETE /item/$id
      */
-    public function deleteItem($id) {
+    public function deleteItem($id=null) {
         if ($id) {
             return (Item::newInstance()->findByPrimaryKey($id));
         }
